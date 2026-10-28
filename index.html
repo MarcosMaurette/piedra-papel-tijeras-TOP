@@ -24,35 +24,30 @@
        por ultimo analizar tijera (pierde contra piedra, gana contra papel)
        */ 
 
-       let rJugador1 = darOpciones();
-       let rComputadora = getComputerChoice();  
-       console.log(rJugador1);
-       console.log(rComputadora);
+       let resultadoJugador = 0;
+       let resultadoComputadora = 0;
 
-
-       if(rComputadora === rJugador1){
-        console.log(`Es un empate, ambos jugadores eligieron ${rComputadora}`);
-       }else if(rJugador1 === 'piedra'){
-        if(rComputadora === 'papel'){
-            console.log(`Gana la computadora, eligio ${rComputadora} y usted ${rJugador1}`);
-        }else{
-            console.log(`Gana usted, la computadora eligio ${rComputadora} y usted ${rJugador1}`);
-        }
-       }else if(rJugador1 === 'papel'){
-        if(rComputadora === 'piedra'){
-            console.log(`Gana usted, la computadora eligio ${rComputadora} y usted ${rJugador1}`);
-        }else{
-            console.log(`Gana la computadora, eligio ${rComputadora} y usted ${rJugador1}`);
-        }
-       }else{
-        if(rComputadora === 'piedra'){
-            console.log(`Gana la computadora, eligio ${rComputadora} y usted ${rJugador1}`);
-        }else{
-            console.log(`Gana usted, la computadora eligio ${rComputadora} y usted ${rJugador1}`);
-        }
-
-
+       for(i = 0; i < 5; i++){
+           let ganador = rondaJuego();
+           
+           if(ganador === 'jugador'){
+            resultadoJugador++;
+           }else if(ganador === 'computadora'){
+            resultadoComputadora++;
+           }
        }
+
+       if(resultadoComputadora > resultadoJugador){
+        console.log("Gana la computadora");
+       }else if(resultadoComputadora < resultadoJugador){
+        console.log("GAna el jugador");
+       }else{
+        console.log("EMpataron burros");
+       }
+
+
+
+
 
         function darOpciones(){
         console.log("Opciones");
@@ -75,6 +70,48 @@
        }
        }
 
+       function rondaJuego(){
+        let rJugador1 = darOpciones();
+        let rComputadora = getComputerChoice();
+        let ganador = 0;  
+       console.log(rJugador1);
+       console.log(rComputadora);
+
+
+       if(rComputadora === rJugador1){
+        console.log(`Es un empate, ambos jugadores eligieron ${rComputadora}`);
+        ganador = 'nadie';
+       }else if(rJugador1 === 'piedra'){
+        if(rComputadora === 'papel'){
+            console.log(`Gana la computadora, eligio ${rComputadora} y usted ${rJugador1}`);
+            ganador = 'computadora';
+        }else{
+            console.log(`Gana usted, la computadora eligio ${rComputadora} y usted ${rJugador1}`);
+            ganador = 'jugador';
+        }
+       }else if(rJugador1 === 'papel'){
+        if(rComputadora === 'piedra'){
+            console.log(`Gana usted, la computadora eligio ${rComputadora} y usted ${rJugador1}`);
+            ganador = 'jugador';
+        }else{
+            console.log(`Gana la computadora, eligio ${rComputadora} y usted ${rJugador1}`);
+            ganador = 'computadora';
+        }
+       }else{
+        if(rComputadora === 'piedra'){
+            console.log(`Gana la computadora, eligio ${rComputadora} y usted ${rJugador1}`);
+            ganador = 'computadora';
+        }else{
+            console.log(`Gana usted, la computadora eligio ${rComputadora} y usted ${rJugador1}`);
+            ganador = 'jugador';
+        }
+
+
+       }
+
+       return ganador; 
+
+       }
 
     </script>
 </body>

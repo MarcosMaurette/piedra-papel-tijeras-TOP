@@ -24,81 +24,55 @@
        por ultimo analizar tijera (pierde contra piedra, gana contra papel)
        */ 
 
-       console.log("Opciones");
-       console.log("1. Piedra");
-       console.log("2. Papel");
-       console.log("3. Tijeras");
-       let rJugador1 = prompt("Seleccione una opcion para ganarle a la maquina: ");
-       let rComputadora = getComputerChoice();
-       
+       let rJugador1 = darOpciones();
+       let rComputadora = getComputerChoice();  
        console.log(rJugador1);
-
-       function getComputerChoice(){
-        return Math.random();
-       }
-
        console.log(rComputadora);
 
-       if(rComputadora < (1/3)){
-         rComputadora = 1;
+
+       if(rComputadora === rJugador1){
+        console.log(`Es un empate, ambos jugadores eligieron ${rComputadora}`);
+       }else if(rJugador1 === 'piedra'){
+        if(rComputadora === 'papel'){
+            console.log(`Gana la computadora, eligio ${rComputadora} y usted ${rJugador1}`);
+        }else{
+            console.log(`Gana usted, la computadora eligio ${rComputadora} y usted ${rJugador1}`);
+        }
+       }else if(rJugador1 === 'papel'){
+        if(rComputadora === 'piedra'){
+            console.log(`Gana usted, la computadora eligio ${rComputadora} y usted ${rJugador1}`);
+        }else{
+            console.log(`Gana la computadora, eligio ${rComputadora} y usted ${rJugador1}`);
+        }
+       }else{
+        if(rComputadora === 'piedra'){
+            console.log(`Gana la computadora, eligio ${rComputadora} y usted ${rJugador1}`);
+        }else{
+            console.log(`Gana usted, la computadora eligio ${rComputadora} y usted ${rJugador1}`);
+        }
+
+
+       }
+
+        function darOpciones(){
+        console.log("Opciones");
+        console.log("piedra");
+        console.log("papel");
+        console.log("tijera");
+        let rJugador1 = prompt("Seleccione una opcion para ganarle a la maquina: ");
+        return rJugador1;
+        };
+
+        function getComputerChoice(){
+        let rComputadora = Math.random();
+
+        if(rComputadora < (1/3)){
+         return 'piedra';
        }else if(rComputadora < (2/3)){
-        rComputadora = 2;
+        return 'papel';
        }else{
-        rComputadora = 3;
+        return 'tijera';
        }
-
-       console.log(rComputadora);
-
-       let objetoJ1 = 0;
-    
-       switch(rJugador1){
-        case '1':
-            objetoJ1 = "Piedra";
-            break;
-        case '2':
-            objetoJ1 = "Papel";
-            break;
-        case '3':
-            objetoJ1 = "Tijera";
-        break;
-       }
-
-       console.log(objetoJ1)
-
-       let objetoPc = 0;
-       switch(rComputadora){
-        case 1:
-            objetoPc = "Piedra";
-            break;
-        case 2:
-            objetoPc = "Papel";
-            break;
-        case 3:
-            objetoPc = "Tijera";
-        break;
-       }
-
-
-       if(rComputadora == rJugador1){
-        console.log(`Es un empate, ambos jugadores eligieron ${objetoJ1}`);
-       }else if(rJugador1 == '1'){
-        if(rComputadora == 2){
-            console.log(`Gana la computadora, eligio ${objetoPc} y usted ${objetoJ1}`);
-        }else{
-            console.log(`Gana usted, la computadora eligio ${objetoPc} y usted ${objetoJ1}`);
-        }
-       }else if(rJugador1 == '2'){
-        if(rComputadora == 1){
-            console.log(`Gana usted, la computadora eligio ${objetoPc} y usted ${objetoJ1}`);
-        }else{
-            console.log(`Gana la computadora, eligio ${objetoPc} y usted ${objetoJ1}`);
-        }
-       }else{
-        if(rComputadora == '1'){
-            console.log(`Gana la computadora, eligio ${objetoPc} y usted ${objetoJ1}`);
-        }else{
-            console.log(`Gana usted, la computadora eligio ${objetoPc} y usted ${objetoJ1}`);
-        }
        }
 
 
